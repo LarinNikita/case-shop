@@ -20,3 +20,12 @@ export const users = [
         src: '/users/user-5.png',
     },
 ]
+
+export const cases = [
+    '/covers/cover-1.jpg',
+    '/covers/cover-2.jpg',
+    '/covers/cover-3.jpg',
+    '/covers/cover-4.jpg',
+    '/covers/cover-5.jpg',
+    '/covers/cover-6.jpg',
+]

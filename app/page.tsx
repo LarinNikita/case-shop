@@ -5,6 +5,9 @@ import { users } from '@/constants'
 
 import MaxWidthWrapper from '@/components/MaxWidthWrapper'
 import Phone from '@/components/Phone'
+import { Icons } from '@/components/Icons'
+import UserReview from '@/components/UserReview'
+import Reviews from '@/components/Reviews'
 
 export default function Home() {
     return (
@@ -111,6 +114,51 @@ export default function Home() {
                         </div>
                     </div>
                 </MaxWidthWrapper>
+            </section>
+            <section className="bg-slate-100 py-24">
+                <MaxWidthWrapper className="flex flex-col items-center gap-16">
+                    <div className="flex flex-col items-center gap-4 sm:gap-6 lg:flex-row">
+                        <h2 className="order-1 mt-2 text-balance text-center text-5xl font-bold !leading-tight tracking-tight text-gray-900 md:text-6xl">
+                            What our{' '}
+                            <span className="relative px-2">
+                                customers
+                                <Icons.underline className="pointer-events-none absolute inset-x-0 -bottom-5 hidden text-green-500 sm:block" />
+                            </span>{' '}
+                            say
+                        </h2>
+                        <Image
+                            src="/snake-2.png"
+                            alt="snake"
+                            width={96}
+                            height={96}
+                            className="order-0 lg:order-2"
+                        />
+                    </div>
+                    <div className="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 px-4 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+                        <UserReview
+                            countStarts={5}
+                            text='"The case feels durable and I even got a compliment on the
+                  design. Had the case for two and a half months now and the image is super clear, on the case I had before, the image started fading into
+                  yellow-ish color after a couple weeks. Love it."'
+                            highlight="the image is super clear"
+                            userImage="/users/user-2.png"
+                            userName="Jonathan"
+                        />
+                        <UserReview
+                            countStarts={5}
+                            text='"I usually keep my phone together with my keys in my pocket
+                  and that led to some pretty heavy scratchmarks on all of my
+                  last phone cases. This one, besides a barely noticeable
+                  scratch on the corner, looks brand new after about half a year. I dig it."'
+                            highlight="looks brand new after about half a year"
+                            userImage="/users/user-4.png"
+                            userName="Ella"
+                        />
+                    </div>
+                </MaxWidthWrapper>
+                <div className="pt-16">
+                    <Reviews />
+                </div>
             </section>
         </div>
     )
