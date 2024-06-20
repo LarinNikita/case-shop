@@ -58,7 +58,7 @@ const DesignConfiguration = ({
     })
 
     return (
-        <div className="relative mb-20 mt-20 grid grid-cols-3 pb-20">
+        <div className="relative mb-20 mt-20 grid grid-cols-1 gap-y-6 pb-20 lg:grid-cols-3 lg:gap-y-0">
             <div className="relative col-span-2 flex h-[37.5rem] w-full max-w-4xl items-center justify-center overflow-hidden rounded-lg border-2 border-dashed border-gray-300 p-12 text-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                 <div className="pointer-events-none relative aspect-[896/1831] w-60 bg-opacity-50">
                     <AspectRatio
@@ -106,8 +106,7 @@ const DesignConfiguration = ({
                     </div>
                 </Rnd>
             </div>
-            <div className="flex h-[37.5rem] flex-col bg-white">
-                {/* todo: fix scroll area overflow */}
+            <div className="col-span-full flex h-[37.5rem] w-full flex-col bg-white lg:col-span-1">
                 <ScrollArea className="relative flex-1 overflow-auto">
                     <div
                         aria-hidden="true"
@@ -290,7 +289,7 @@ const DesignConfiguration = ({
                 <div className="h-16 w-full bg-white px-8">
                     <div className="h-px w-full bg-zinc-200" />
                     <div className="flex size-full items-center justify-end">
-                        <div className="flex w-full items-center gap-6">
+                        <div className="flex w-full items-center justify-between gap-6">
                             <p className="whitespace-nowrap font-medium">
                                 {formatPrice(
                                     (BASE_PRICE +
@@ -299,7 +298,7 @@ const DesignConfiguration = ({
                                         100,
                                 )}
                             </p>
-                            <Button size="sm" className="w-full">
+                            <Button size="sm" className="flex w-full max-w-60">
                                 Continue
                                 <ArrowRight className="ml-1.5 inline size-4" />
                             </Button>
