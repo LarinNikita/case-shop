@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { ArrowRight, Check, Star } from 'lucide-react'
 import Link from 'next/link'
 
-import { users } from '@/constants'
+import { USERS } from '@/constants'
 
 import MaxWidthWrapper from '@/components/MaxWidthWrapper'
 import Phone from '@/components/Phone'
@@ -60,7 +60,7 @@ export default function Home() {
                             </ul>
                             <div className="mt-12 flex flex-col items-center gap-5">
                                 <div className="flex -space-x-4">
-                                    {users.map(user => (
+                                    {USERS.map(user => (
                                         <Image
                                             key={user.id}
                                             src={user.src}
