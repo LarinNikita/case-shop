@@ -5,7 +5,7 @@ import { useInView } from 'framer-motion'
 import Image from 'next/image'
 
 import { cn } from '@/lib/utils'
-import { cases } from '@/constants'
+import { CASES } from '@/constants'
 
 import MaxWidthWrapper from './MaxWidthWrapper'
 import Phone from './Phone'
@@ -110,7 +110,7 @@ function Review({ imgSrc, className, ...props }: ReviewProps) {
 function ReviewsGrid() {
     const containerRef = useRef<HTMLDivElement | null>(null)
     const isInView = useInView(containerRef, { once: true, amount: 0.4 })
-    const columns = splitArray(cases, 3)
+    const columns = splitArray(CASES, 3)
     const column1 = columns[0]
     const column2 = columns[1]
     const column3 = splitArray(columns[2], 2)
