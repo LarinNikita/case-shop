@@ -2,19 +2,27 @@
 
 import React, { useEffect, useState } from 'react'
 
-import { ArrowRight, Check } from 'lucide-react'
 import Confetti from 'react-dom-confetti'
+import { useRouter } from 'next/navigation'
 import { Configuration } from '@prisma/client'
+import { ArrowRight, Check } from 'lucide-react'
+import { useMutation } from '@tanstack/react-query'
 
 import { COLORS, MODELS } from '@/constants'
 import { BASE_PRICE, PRODUCT_PRICES } from '@/constants/config/products'
 
 import { cn, formatPrice } from '@/lib/utils'
 
+import { createCheckoutSession } from '../actions'
+
 import Phone from '@/components/Phone'
 import { Button } from '@/components/ui/button'
+import { useToast } from '@/components/ui/use-toast'
 
 const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
+    const router = useRouter()
+    const { toast } = useToast()
+
     const [showConfetti, setShowConfetti] = useState<boolean>(false)
     useEffect(() => setShowConfetti(true), [])
 
@@ -28,6 +36,22 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
     if (material === 'polycarbonate')
         totalPrice += PRODUCT_PRICES.material.polycarbonate
     if (finish === 'textured') totalPrice += PRODUCT_PRICES.finish.textured
+
+    const { mutate: createPaymentSession } = useMutation({
+        mutationKey: ['get-checkout-session'],
+        mutationFn: createCheckoutSession,
+        onSuccess: ({ url }) => {
+            if (url) router.push(url)
+            else throw new Error('Unable to retrieve payment URL.')
+        },
+        onError: () => {
+            toast({
+                title: 'Something went wrong',
+                description: 'There was an error on our end. Please try again.',
+                variant: 'destructive',
+            })
+        },
+    })
 
     return (
         <>
@@ -137,6 +161,11 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
                                 //* isLoading={true}
                                 //* loadingText="loading"
                                 //* disabled={true}
+                                onClick={() =>
+                                    createPaymentSession({
+                                        configId: configuration.id,
+                                    })
+                                }
                                 className="px-4 sm:px-6 lg:px-8"
                             >
                                 Check out
